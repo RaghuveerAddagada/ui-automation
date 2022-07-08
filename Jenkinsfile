@@ -4,9 +4,9 @@ pipeline {
     options {
         timeout(time: 10, unit: 'MINUTES')
     }
-    tools {
-        maven "MAVEN_HOME"
-    }
+    //tools {
+    //    maven "MAVEN_HOME"
+    //}
 
     stages {
 
