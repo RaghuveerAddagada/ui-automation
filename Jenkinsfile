@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
     tools {
-        maven "M2_HOME"
+        maven "mvn"
     }
 
     stages {
