@@ -4,9 +4,9 @@ pipeline {
     options {
         timeout(time: 10, unit: 'MINUTES')
     }
-    //tools {
-    //    maven "MAVEN_HOME"
-    //}
+    tools {
+        maven " /usr/local/Cellar/maven/3.8.5/bin"
+    }
 
     stages {
 
