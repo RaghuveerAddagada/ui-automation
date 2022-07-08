@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sony PS4 Games Price check">
+    <test name="check latest games prices">
+        <classes>
+            <class name="sample.SonyTest"/>
+        </classes>
+    </test>
+</suite>
