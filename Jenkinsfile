@@ -4,9 +4,11 @@ pipeline {
     options {
         timeout(time: 10, unit: 'MINUTES')
     }
+
     tools {
-        maven "mvn"
-    }
+          maven 'M2_HOME'
+          jdk 'JAVA_HOME'
+        }
 
     stages {
 
@@ -15,14 +17,14 @@ pipeline {
                 sh "mvn clean test -DsuiteXmlFile=testNGsuite/SonyTest.xml"
             }
 
-            post {
-                success {
-                    archiveArtifacts artifacts: '*test-output/.html', followSymlinks: false
-                }
-                always {
-                    step([$class: 'Publisher', reportFilenamePattern: '**test-output/testng-results.xml'])
-                }
-            }
+            //post {
+            //    success {
+            //        archiveArtifacts artifacts: '*test-output/.html', followSymlinks: false
+            //    }
+            //    always {
+            //        step([$class: 'Publisher', reportFilenamePattern: '**test-output/testng-results.xml'])
+            //    }
+            //}
         }
     }
 }
