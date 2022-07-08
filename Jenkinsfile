@@ -6,9 +6,8 @@ pipeline {
     }
 
     tools {
-          maven 'M2_HOME'
-          jdk 'JAVA_HOME'
-        }
+        maven 'Maven 3.8.5'
+    }
 
     stages {
 
