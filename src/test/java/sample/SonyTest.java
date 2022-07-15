@@ -31,6 +31,7 @@ public class SonyTest extends BaseClass {
         Thread.sleep(2000);
 
         priceOfStandardEdition = driver.findElement(By.xpath("//*[@id=\"buynow\"]/div/div/div/article[1]/div[2]/div[2]/div/div/label/div/span/span/span"));
+        scrollToElement(priceOfStandardEdition);
         Assert.assertEquals(priceOfStandardEdition.getText(), "Rs 3,999");
     }
 
