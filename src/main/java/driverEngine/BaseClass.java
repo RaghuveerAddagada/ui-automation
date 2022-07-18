@@ -50,7 +50,7 @@ public class BaseClass {
                 "--no-sandbox",
                 "--disable-dev-shm-usage");
 
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         log("Chrome driver started successfully");
 
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);

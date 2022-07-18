@@ -39,6 +39,7 @@ public class SonyTest extends BaseClass {
     public void BorderLands3() throws Exception {
 
         driver.get("https://www.playstation.com/en-in/games/borderlands-3/");
+        Thread.sleep(5000);
 
         WebElement titleText = driver.findElement(By.xpath("//*[@id=\"gdk__content\"]/div/div[1]/div/div[1]/div[2]/div[1]/h1"));
         Assert.assertEquals(titleText.getText(), "Borderlands 3", "Title mismatch");
