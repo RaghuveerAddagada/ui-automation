@@ -35,10 +35,12 @@ public class BaseClass {
 
         if (System.getProperty("os.name").startsWith("Mac")) {
             System.setProperty("webdriver.chrome.driver", driverPath + "/drivers/chromedriver");
+            System.setProperty("webdriver.chrome.silentOutput", "true");
         } else if (System.getProperty("os.name").startsWith("Windows")) {
             // TODO
         } else {
             System.setProperty("webdriver.chrome.driver", driverPath + "/drivers/chromedriver_linux");
+            System.setProperty("webdriver.chrome.silentOutput", "true");
         }
 
         ChromeOptions options = new ChromeOptions();
@@ -111,13 +113,5 @@ public class BaseClass {
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot " + e.getMessage());
         }
-    }
-
-    public Properties readLocators() {
-        return readPropertyFile("locators.properties");
-    }
-
-    public Properties readCredentials() {
-        return readPropertyFile("credentials.properties");
     }
 }
