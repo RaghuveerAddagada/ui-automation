@@ -33,8 +33,7 @@ public class BaseClass {
     public static WebDriver getChromeDriver() {
         ChromeOptions options = new ChromeOptions();
 
-        //"--headless",
-        options.addArguments(
+        options.addArguments("--headless",
                 "--disable-gpu",
                 "--window-size=1920,1200",
                 "--ignore-certificate-errors",

@@ -13,7 +13,7 @@ pipeline {
 
         stage('Execution Time') {
             steps {
-                sh "mvn clean test -DsuiteXmlFile=testNGsuite/SonyTest.xml"
+                sh "mvn clean test -DsuiteXmlFile=testNGsuite/praveen.xml"
             }
 
             //post {
