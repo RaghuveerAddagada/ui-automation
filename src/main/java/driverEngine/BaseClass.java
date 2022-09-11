@@ -1,5 +1,7 @@
 package driverEngine;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.java.Log;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,15 +11,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 
 import java.io.*;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+@Log
 public class BaseClass {
 
     public static WebDriver driver;
@@ -25,26 +25,16 @@ public class BaseClass {
 
     public static WebDriver startFirefoxDriver() {
         driver = new FirefoxDriver();
-        log("Firefox driver started successfully");
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        log.info("Firefox driver started successfully");
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         return driver;
     }
 
-    public static WebDriver startChromeDriver() {
-        final String driverPath = System.getProperty("user.dir");
-
-        if (System.getProperty("os.name").startsWith("Mac")) {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/drivers/chromedriver");
-            System.setProperty("webdriver.chrome.silentOutput", "true");
-        } else if (System.getProperty("os.name").startsWith("Windows")) {
-            // TODO
-        } else {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/drivers/chromedriver_linux");
-            System.setProperty("webdriver.chrome.silentOutput", "true");
-        }
-
+    public static WebDriver getChromeDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless",
+
+        //"--headless",
+        options.addArguments(
                 "--disable-gpu",
                 "--window-size=1920,1200",
                 "--ignore-certificate-errors",
@@ -52,31 +42,30 @@ public class BaseClass {
                 "--no-sandbox",
                 "--disable-dev-shm-usage");
 
+        WebDriverManager.chromedriver().setup();
+        log.info("Chrome driver started successfully");
+
         driver = new ChromeDriver(options);
-        log("Chrome driver started successfully");
-
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        return driver;
-    }
 
-    /**
-     * This method is used to Log messages in std out
-     *
-     * @param messageToLog message you wanted to log
-     */
-    public static void log(final String messageToLog) {
-        Reporter.log(messageToLog, true);
+        return driver;
     }
 
 
     public void clickOnElement(final WebElement element) {
-        log("---> webdriver performing click");
+        log.info("webdriver performing click on -> {" + element + "}");
         element.click();
     }
 
+    public String getTextFromElement(final WebElement element) {
+        log.info("webdriver performing get text from element -> {" + element + "}");
+        return element.getText();
+    }
+
+
     public void scrollToElement(final WebElement element) {
-        log("---> webdriver performing scroll to element");
+        log.info("webdriver performing scroll to element -> {" + element + "}");
         Actions a = new Actions(driver);
         a.moveToElement(element);
         a.perform();
@@ -89,9 +78,9 @@ public class BaseClass {
             properties.load(inputStream);
             inputStream.close();
         } catch (FileNotFoundException e) {
-            log(e.getMessage());
+            log.info(e.getMessage());
         } catch (IOException e) {
-            log(e.getMessage());
+            log.info(e.getMessage());
         }
         return properties;
     }
