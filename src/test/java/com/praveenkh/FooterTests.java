@@ -1,44 +1,60 @@
 package com.praveenkh;
 
-import driverEngine.BaseClass;
-import org.openqa.selenium.By;
+import com.praveenkh.pages.HomePageFooter;
+import driverEngine.BrowserEngine;
+import lombok.extern.java.Log;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-public class FooterTests extends BaseClass {
+@Log
+public class FooterTests {
 
     private static WebDriver driver;
+    private HomePageFooter homePageFooter;
 
     private final String SITE = "https://praveenkh.com/";
-    private final String COPYRIGHT_TEXT_FOOTER = "Copyright © 2022 Praveen K H - All Rights Reserved.";
-    private final String YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/channel/UCOmpwPOwUWrWejxsI-gRlbg";
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void startBrowser() {
+        driver = BrowserEngine.getChromeDriver();
+        homePageFooter = new HomePageFooter(driver);
+    }
 
-        driver = getChromeDriver();
-        driver.get(SITE);
+    @BeforeMethod(alwaysRun = true)
+    public void beforeTestNavigateToHomePage() {
+        log.info("Navigate to Home page before");
+        driver.navigate().to(SITE);
     }
 
     @Test()
-    public void Copyright() {
-        final WebElement copyRightInFooter = driver.findElement(By.xpath("//*[@id=\"84018e6c-a859-4f30-b691-b5ffe8050167\"]/div/section/div[1]/div/div/div[1]/div/p/span"));
-        Assert.assertEquals(COPYRIGHT_TEXT_FOOTER, getTextFromElement(copyRightInFooter), "Copyright text mismatch at footer");
+    public void ValidateCopyright() {
+        homePageFooter.validateCopyright();
     }
 
     @Test()
-    public void Badminton() {
-        final WebElement badmintonInFooter = driver.findElement(By.xpath("//*[@id=\"84018e6c-a859-4f30-b691-b5ffe8050167\"]/div/section/div[2]/ul/li[1]/a"));
-        Assert.assertEquals("BADMINTON", getTextFromElement(badmintonInFooter), "Copyright text mismatch at footer");
-        Assert.assertEquals(YOUTUBE_CHANNEL_LINK, badmintonInFooter.getAttribute("href"), "Copyright text mismatch at footer");
+    public void ValidateBadminton() {
+        homePageFooter.validateBadminton();
+    }
+
+    @Test()
+    public void ValidatePrivacyPolicy() {
+        homePageFooter
+                .validatePrivacyPolicy()
+                .clickOnPrivacyPolicy()
+                .validatePrivacyPolicyPageContent();
+    }
+
+    @Test()
+    public void ValidateTermsAndConditions() {
+        homePageFooter
+                .validateTermsAndConditions()
+                .clickOnTermsAndConditions()
+                .validateTermsAndConditionsPageContent();
     }
 
     @AfterClass
     public void quiteBrowser() {
+        log.info("Quit driver after test");
         driver.quit();
     }
 }

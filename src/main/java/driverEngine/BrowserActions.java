@@ -1,67 +1,46 @@
 package driverEngine;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 @Log
-public class BaseClass {
+public class BrowserActions {
 
-    public static WebDriver driver;
+    private final WebDriver driver;
 
+    public BrowserActions(WebDriver driver) {
+        this.driver = driver;
 
-    public static WebDriver startFirefoxDriver() {
-        driver = new FirefoxDriver();
-        log.info("Firefox driver started successfully");
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        return driver;
+        //TODO Check that we're on the right page by asserting page title or URL
     }
 
-    public static WebDriver getChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
-
-        options.addArguments("--headless",
-                "--disable-gpu",
-                "--window-size=1920,1200",
-                "--ignore-certificate-errors",
-                "--disable-extensions",
-                "--no-sandbox",
-                "--disable-dev-shm-usage");
-
-        WebDriverManager.chromedriver().setup();
-        log.info("Chrome driver started successfully");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-
-        return driver;
-    }
-
-
-    public void clickOnElement(final WebElement element) {
+    public void clickOnElement(final By element) {
         log.info("webdriver performing click on -> {" + element + "}");
-        element.click();
+        driver.findElement(element).click();
     }
 
-    public String getTextFromElement(final WebElement element) {
+    public String getTextFromElement(final By element) {
         log.info("webdriver performing get text from element -> {" + element + "}");
-        return element.getText();
+        return driver.findElement(element).getText();
     }
 
+    public String getAttributeFromElement(final By element, final String attribute) {
+        log.info("webdriver performing get attribute [" + attribute + "] from element -> {" + element + "}");
+        return driver.findElement(element).getAttribute(attribute);
+    }
+
+    public String getCurrentUrl() {
+        log.info("webdriver get current URL");
+        return driver.getCurrentUrl();
+    }
 
     public void scrollToElement(final WebElement element) {
         log.info("webdriver performing scroll to element -> {" + element + "}");
@@ -73,11 +52,9 @@ public class BaseClass {
     private Properties readPropertyFile(final String fileName) {
         Properties properties = new Properties();
         try {
-            InputStream inputStream = new FileInputStream(fileName);
+            InputStream inputStream = Files.newInputStream(Paths.get(fileName));
             properties.load(inputStream);
             inputStream.close();
-        } catch (FileNotFoundException e) {
-            log.info(e.getMessage());
         } catch (IOException e) {
             log.info(e.getMessage());
         }
