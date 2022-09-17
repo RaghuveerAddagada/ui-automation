@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Praveen KH">
+    <test name="Test for Broken links">
+        <classes>
+            <class name="com.praveenkh.AllLinksTest"/>
+        </classes>
+    </test>
+</suite>
