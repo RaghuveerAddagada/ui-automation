@@ -12,7 +12,7 @@ public class FooterTests {
     private static WebDriver driver;
     private HomePageFooter homePageFooter;
 
-    private final String SITE = "https://praveenkh.com/";
+    private final String SITE = "https://www.praveenkh.com/";
 
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {

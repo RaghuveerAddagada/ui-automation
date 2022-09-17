@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Properties;
 
 @Log
@@ -40,6 +41,11 @@ public class BrowserActions {
     public String getCurrentUrl() {
         log.info("webdriver get current URL");
         return driver.getCurrentUrl();
+    }
+
+    public List<WebElement> getAllHrefLinksFromPage() {
+        log.info("Get all href links in the page");
+        return driver.findElements(By.xpath("//*[@href]"));
     }
 
     public void scrollToElement(final WebElement element) {
