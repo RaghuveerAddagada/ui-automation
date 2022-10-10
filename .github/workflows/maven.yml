@@ -27,4 +27,4 @@ jobs:
        chmod +x ./scripts/InstallChrome.sh
         ./scripts/InstallChrome.sh
     - name: Build & Run tests with Maven
-      run: mvn clean test -DsuiteXmlFile=testNGsuite/praveen.xml
+      run: mvn clean test -DtesultsTarget=praveenkh -DtesultsConfig=tesults.properties -DsuiteXmlFile=testNGsuite/praveen.xml

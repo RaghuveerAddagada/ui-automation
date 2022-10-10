@@ -17,6 +17,7 @@
         <lombok.version>1.18.24</lombok.version>
         <testng.version>7.4.0</testng.version>
         <slf4j.version>2.0.0</slf4j.version>
+        <tesults.version>1.0.2</tesults.version>
         <webdrivermanager.version>5.2.1</webdrivermanager.version>
         <maven.source.encoding>UTF-8</maven.source.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -49,6 +50,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tesults.testng</groupId>
+            <artifactId>tesults-testng</artifactId>
+            <version>${tesults.version}</version>
         </dependency>
 
         <dependency>
@@ -88,6 +95,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <systemPropertyVariables>
+                        <tesultsTarget>token</tesultsTarget>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
