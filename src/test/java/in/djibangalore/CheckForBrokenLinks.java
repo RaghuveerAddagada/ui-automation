@@ -1,4 +1,4 @@
-package com.praveenkh;
+package in.djibangalore;
 
 import driverEngine.BrowserActions;
 import driverEngine.BrowserEngine;
@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 
 @Log
-public class AllLinksTest {
-
+public class CheckForBrokenLinks {
     private static WebDriver driver;
     private static BrowserActions browserActions;
-    private final String SITE = "https://www.praveenkh.com/";
+    private final String SITE = "https://djibangalore.in";
 
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
@@ -48,7 +48,7 @@ public class AllLinksTest {
 
     @Test(dataProvider = "allLinks")
     public void validateAllLinksWorking(final String link) {
-
+        final List<Integer> allowedCodes = Arrays.asList(200, 201, 204);
         final String url = link;
         log.info("Url under test : [ " + url + " ]");
         if (url == null || url.isEmpty()) {
@@ -60,8 +60,7 @@ public class AllLinksTest {
             huc.setRequestMethod("HEAD");
             huc.connect();
             final int respCode = huc.getResponseCode();
-            Assert.assertEquals(respCode, 200, "Broken Link : [ " + url + " ]");
-
+            Assert.assertTrue(allowedCodes.contains(respCode), "Broken Link : [ " + url + " ]");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -71,7 +70,6 @@ public class AllLinksTest {
         }
 
     }
-
 
     @AfterClass
     public void quiteBrowser() {

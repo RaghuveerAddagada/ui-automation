@@ -43,6 +43,11 @@ public class BrowserActions {
         return driver.getCurrentUrl();
     }
 
+    public String getCurrentPageTitle() {
+        log.info("webdriver get current page Title");
+        return driver.getTitle();
+    }
+
     public List<WebElement> getAllHrefLinksFromPage() {
         log.info("Get all href links in the page");
         return driver.findElements(By.xpath("//*[@href]"));

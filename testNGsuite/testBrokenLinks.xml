@@ -1,8 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Praveen KH">
+<suite name="DJI Bangalore ">
     <test name="Test for Broken links">
         <classes>
-            <class name="com.praveenkh.AllLinksTest"/>
+            <class name="in.djibangalore.CheckForBrokenLinks"/>
+            <class name="in.djibangalore.HomePageTests"/>
         </classes>
     </test>
 </suite>
