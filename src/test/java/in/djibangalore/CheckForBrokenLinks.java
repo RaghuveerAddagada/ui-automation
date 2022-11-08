@@ -57,10 +57,11 @@ public class CheckForBrokenLinks {
 
         try {
             final HttpURLConnection huc = (HttpURLConnection) (new URL(url).openConnection());
+            huc.setConnectTimeout(5000);
             huc.setRequestMethod("HEAD");
             huc.connect();
             final int respCode = huc.getResponseCode();
-            Assert.assertTrue(allowedCodes.contains(respCode), "Broken Link : [ " + url + " ]");
+            Assert.assertTrue(allowedCodes.contains(respCode), "Broken Link : [ " + url + " ], response code found as [ "+ respCode +" ]");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
