@@ -64,10 +64,10 @@ public class CheckForBrokenLinks {
             Assert.assertTrue(allowedCodes.contains(respCode), "Broken Link : [ " + url + " ], response code found as [ "+ respCode +" ]");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            log.info(e.getMessage());
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            log.info(e.getMessage());
         }
 
     }
