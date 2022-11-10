@@ -9,14 +9,14 @@ public class HomePage {
 
     private final BrowserActions browserActions;
 
-    final By DJI_BANGALORE_LEFT_TOP_LOGO = By.xpath("//*[@id=\"logo-text-9801\"]");
-    final By HOME_IN_HEADER = By.xpath("//*[@id=\"nav-9802\"]/li[1]/a");
-    final By SHOP_IN_HEADER = By.xpath("//*[@id=\"nav-9802\"]/li[2]/a");
-    final By REVIEWS_IN_HEADER = By.xpath("//*[@id=\"nav-9802\"]/li[3]/a");
-    final By CONTACT_US_IN_HEADER = By.xpath("//*[@id=\"nav-9802\"]/li[4]/a");
-    final By INSTAGRAM_IN_HEADER = By.xpath("//*[@id=\"nav-9802\"]/li[5]/a");
+    final By DJI_BANGALORE_LEFT_TOP_LOGO = By.xpath("//*[@id=\"logo-text-5536\"]");
+    final By HOME_IN_HEADER = By.xpath("//*[@id=\"nav-5537\"]/li[1]/a");
+    final By SHOP_IN_HEADER = By.xpath("//*[@id=\"nav-5537\"]/li[2]/a");
+    final By REVIEWS_IN_HEADER = By.xpath("//*[@id=\"nav-5537\"]/li[3]/a");
+    final By CONTACT_US_IN_HEADER = By.xpath("//*[@id=\"nav-5537\"]/li[4]/a");
+    final By INSTAGRAM_IN_HEADER = By.xpath("//*[@id=\"nav-5537\"]/li[5]/a");
 
-    final By PHONE_NUMBER_IN_HOME_PAGE = By.xpath("//*[@id=\"n-9786\"]/div/section/div[2]/div/div[2]/div[2]/div[2]/p");
+    final By PHONE_NUMBER_IN_HOME_PAGE = By.xpath("//*[@id=\"n-5521\"]/div/section/div[2]/div/div[2]/div[2]/div[2]/p");
 
     final By FEATURED_PRODUCTS = By.xpath("//*[@id=\"bs-10\"]/span/div/h2/span");
     final By VIEW_ALL_PRODUCTS = By.xpath("//*[@id=\"bs-10\"]/span/div/div/div/div/div[2]/a/span");
