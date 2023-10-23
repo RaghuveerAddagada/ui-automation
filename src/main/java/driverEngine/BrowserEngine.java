@@ -23,9 +23,8 @@ public class BrowserEngine {
     }
 
     public static WebDriver getChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
-
-        options.addArguments("--headless",
+        final ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new",
                 "--disable-gpu",
                 "--window-size=1920,1200",
                 "--ignore-certificate-errors",
@@ -37,7 +36,7 @@ public class BrowserEngine {
         log.info("Chrome driver started successfully");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
