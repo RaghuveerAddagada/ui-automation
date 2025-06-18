@@ -19,6 +19,11 @@
 - Implementation of core framework components
 - Addition of basic test cases
 - CI/CD setup with GitHub Actions
+- Upgraded Java version from 11 to 17
+- Updated GitHub Actions workflow for Java 17
+- Updated dependencies:
+  - AspectJ to 1.9.19 for Java 17 compatibility
+  - Maven Surefire Plugin to 3.1.2
 
 ### 3. Active Decisions
 

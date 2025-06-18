@@ -3,9 +3,9 @@
 ## Technology Stack
 
 ### Core Technologies
-1. **Java 11**
-   - Language version: 11
-   - Compiler compliance: 11
+1. **Java 17**
+   - Language version: 17
+   - Compiler compliance: 17
    - Source encoding: UTF-8
 
 2. **Selenium WebDriver**
@@ -33,7 +33,7 @@
    - Dependency management
    - Plugin configuration:
      - maven-compiler-plugin: 3.10.1
-     - maven-surefire-plugin: 2.18.1
+     - maven-surefire-plugin: 3.1.2
 
 ### Supporting Libraries
 1. **WebDriverManager**
@@ -53,7 +53,7 @@
      - Getter/Setter generation
 
 3. **AspectJ**
-   - Version: 1.8.10
+   - Version: 1.9.19
    - Purpose: AOP support
    - Used by: maven-surefire-plugin
 
@@ -61,7 +61,7 @@
 
 ### Prerequisites
 1. **Java Development Kit (JDK)**
-   - Version: 11 or higher
+   - Version: 17 or higher
    - Environment variables:
      - JAVA_HOME set
      - Path updated
