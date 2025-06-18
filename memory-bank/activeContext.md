@@ -24,6 +24,9 @@
 - Updated dependencies:
   - AspectJ to 1.9.19 for Java 17 compatibility
   - Maven Surefire Plugin to 3.1.2
+- Modified CI/CD configuration:
+  - Disabled Chrome installation script
+  - Using WebDriverManager for browser setup
 
 ### 3. Active Decisions
 

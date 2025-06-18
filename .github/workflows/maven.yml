@@ -23,10 +23,11 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
         cache: maven
-    - name: Install Google Chrome # Using shell script to install Google Chrome
-      run: |
-       chmod +x ./scripts/InstallChrome.sh
-        ./scripts/InstallChrome.sh
+        
+    #- name: Install Google Chrome # Using shell script to install Google Chrome
+    #  run: |
+    #   chmod +x ./scripts/InstallChrome.sh
+    #    ./scripts/InstallChrome.sh
     - name: Build & Run tests with Maven
       #run: mvn clean test -DsuiteXmlFile=testNGsuite/djiBangalore.xml
       run: mvn clean install -DskipTests=true
