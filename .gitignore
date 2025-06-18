@@ -5,6 +5,7 @@ test-output/
 credentials.properties
 
 .idea/
+.vscode/
 
 # Log file
 *.log
